@@ -32,7 +32,7 @@ make sure that there is a database with the name that is specified in the DB_URL
 
 `cd frontend`
 
-.env file
+create .env file
 
 VITE_SOCKET_URL='http://localhost:8090'
 
@@ -40,7 +40,7 @@ VITE_BACKEND_URL='http://localhost:8090/api/v1'
 
 `cd backend`
 
-.env file
+create .env file
 
 PORT=8090
 
