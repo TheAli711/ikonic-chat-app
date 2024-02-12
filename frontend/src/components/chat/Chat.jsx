@@ -38,6 +38,16 @@ const Chat = ({
   };
 
   useEffect(() => {
+    if (conversation) {
+      const chat = document.getElementById("chat");
+      if (chat) {
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+  }, [conversation]);
+
+  useEffect(() => {
+    // scroll to bottom of chat
     let timeout;
     // on change message, emit typing event
     const typingHandler = (e) => {
@@ -54,6 +64,10 @@ const Chat = ({
       console.log(typing);
       if (user.id !== data.id) {
         setTyping(true);
+        const chat = document.getElementById("chat");
+        if (chat) {
+          chat.scrollTop = chat.scrollHeight;
+        }
         timeout = setTimeout(() => {
           setTyping(false);
         }, 3000);
@@ -94,6 +108,7 @@ const Chat = ({
               width: "100%",
               maxHeight: "100%",
             }}
+            id="chat"
           >
             {conversation?.messages?.map((message) => {
               return (
