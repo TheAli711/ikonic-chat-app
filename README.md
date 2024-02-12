@@ -32,6 +32,8 @@
 
 .env file
 
+VITE_SOCKET_URL='http://localhost:8090'
+
 VITE_BACKEND_URL='http://localhost:8090/api/v1'
 
 `cd backend`
