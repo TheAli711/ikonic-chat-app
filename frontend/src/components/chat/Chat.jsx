@@ -109,6 +109,7 @@ const Chat = ({
               maxHeight: "100%",
             }}
             id="chat"
+            scrollBehavior={"smooth"}
           >
             {conversation?.messages?.map((message) => {
               return (
