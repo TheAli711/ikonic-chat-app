@@ -14,6 +14,8 @@
 
 `bun install`
 
+Need postgresql instance
+
 # Start Server
 
 make sure that there is a database with the name that is specified in the DB_URL connection string.
