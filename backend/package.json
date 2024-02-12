@@ -14,7 +14,8 @@
     "mongoose": "^8.1.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.36.0"
+    "sequelize": "^6.36.0",
+    "socket.io": "^4.7.4"
   },
   "scripts": {
     "start": "bun index.js"

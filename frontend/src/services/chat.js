@@ -28,4 +28,34 @@ const getMessages = async (chatId) => {
   return await res.json();
 };
 
-export { getChats, getMessages };
+const sendMessage = async (chatId, message) => {
+  const res = await fetch(`${BACKEND_URL}/chat/${chatId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ message }),
+  });
+  if (!res.ok) {
+    throw await res.json();
+  }
+  return await res.json();
+};
+
+const createChat = async (userId, message) => {
+  const res = await fetch(`${BACKEND_URL}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ userId, message }),
+  });
+  if (!res.ok) {
+    throw await res.json();
+  }
+  return await res.json();
+};
+
+export { getChats, getMessages, sendMessage, createChat };

@@ -15,7 +15,15 @@ const createChat = async (req, res) => {
     text: message,
     userId: id,
   });
-  res.status(201).json({ conversation, newMessage });
+  const updatedConvo = await Conversation.findByPk(conversation.id, {
+    include: [
+      {
+        model: User,
+        attributes: ["id", "username"],
+      },
+    ],
+  });
+  res.status(201).json({ conversation: updatedConvo, newMessage });
 };
 
 const getChats = async (req, res) => {

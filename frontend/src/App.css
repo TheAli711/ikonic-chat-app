@@ -1,5 +1,11 @@
 .App {
   min-height: 100vh;
   display: flex;
-  background-color: var(--timberwolf);
+  background: #9d9ce46c;
+
+  background-image: url('./assets/bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }

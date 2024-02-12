@@ -6,11 +6,11 @@ import {
   Button,
   FormHelperText,
   useToast,
-} from "@chakra-ui/react";
-import React from "react";
-import { signup } from "../../services/auth";
-import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../AppContext";
+} from '@chakra-ui/react';
+import React from 'react';
+import { signup } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../AppContext';
 
 const Signup = () => {
   const { setUser } = React.useContext(AppContext);
@@ -24,44 +24,44 @@ const Signup = () => {
     console.log(loading);
     e.preventDefault();
     const eMsgs = {};
-    console.log("Sign Up");
+    console.log('Sign Up');
     const formData = new FormData(e.target);
-    if (formData.get("password") !== formData.get("confirm-password")) {
-      console.log("Passwords do not match");
-      eMsgs.confirmPassword = "Passwords do not match";
+    if (formData.get('password') !== formData.get('confirm-password')) {
+      console.log('Passwords do not match');
+      eMsgs.confirmPassword = 'Passwords do not match';
       setErrorMsgs(eMsgs);
       return;
     }
     setErrorMsgs(eMsgs);
     setLoading(true);
     const data = {
-      username: formData.get("username"),
-      password: formData.get("password"),
-      confirmPassword: formData.get("confirm-password"),
+      username: formData.get('username'),
+      password: formData.get('password'),
+      confirmPassword: formData.get('confirm-password'),
     };
     signup(data.username, data.password)
       .then((res) => {
         console.log(res);
         setUser({ ...res.data });
-        localStorage.setItem("user", JSON.stringify(res.data));
-        localStorage.setItem("token", res.token);
+        localStorage.setItem('user', JSON.stringify(res.data));
+        localStorage.setItem('token', res.token);
         setLoading(false);
         toast({
-          title: "Account created.",
+          title: 'Account created.',
           description: "We've created an account for you.",
-          status: "success",
+          status: 'success',
           duration: 2000,
           isClosable: true,
         });
-        navigate("/chats");
+        navigate('/chats');
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
         toast({
-          title: "Account creation failed.",
-          description: err?.message || "An error occurred",
-          status: "error",
+          title: 'Account creation failed.',
+          description: err?.message || 'An error occurred',
+          status: 'error',
           duration: 2000,
           isClosable: true,
         });
@@ -71,13 +71,18 @@ const Signup = () => {
     <form
       onSubmit={signUp}
       style={{
-        width: "100%",
+        width: '100%',
       }}
     >
       <VStack spacing="1.5rem">
         <FormControl isRequired id="username">
           <FormLabel>Username</FormLabel>
-          <Input name="username" placeholder="Enter your username" />
+          <Input
+            name="username"
+            placeholder="Enter your username"
+            variant={'filled'}
+            p={6}
+          />
           {errorMsgs.username && (
             <FormHelperText color="red.500">
               {errorMsgs.username}
@@ -90,6 +95,8 @@ const Signup = () => {
             name="password"
             type="password"
             placeholder="Enter your password"
+            variant={'filled'}
+            p={6}
           />
           {errorMsgs.password && (
             <FormHelperText color="red.500">
@@ -103,6 +110,8 @@ const Signup = () => {
             name="confirm-password"
             type="password"
             placeholder="Retype your password"
+            variant={'filled'}
+            p={6}
           />
           {errorMsgs.confirmPassword && (
             <FormHelperText color="red.500">
@@ -113,8 +122,9 @@ const Signup = () => {
         <Button
           width="100%"
           colorScheme="mintcream"
-          marginTop="2rem"
+          marginTop="1rem"
           type="submit"
+          variant={'brandPrimary'}
           isLoading={loading}
         >
           Sign Up
